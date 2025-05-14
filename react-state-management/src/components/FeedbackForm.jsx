@@ -25,49 +25,55 @@ const isFormIncomplete = !formData.name || !formData.email || !formData.feedback
 const handleSubmit = (e) => {
     e.preventDefault();
     alert('Feedback Submitted');
+
+    setFormData({
+        name: '',
+        email: '',
+        feedback: ''
+    })
 }
 
 
 return (
 <>
-
+<div className="form">
     <h1>Feedback Form</h1>
 
     <form onSubmit={handleSubmit}>
 
-    <div className = "name-input">
-      <label> Name:<br /> </label> 
+    
+      <label> Name:  </label> 
         <input
           type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}/> 
 
-    </div> 
+    <br /> <br />
       
-    <div className = "email-input">
-      <label>Email:
+    
+      <label>Email: </label>  
         <input
           type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
-        /> </label>
+        /> 
         
-    </div> 
+    
+        <br />
         <br />
 
-    <div className = "feedback-input">
-        <label> Feedback:</label>
-        <textarea
+    
+        <label> Feedback: <br /></label>
+        <textarea style={{width: 250}}
         name="feedback"
         value={formData.feedback}
         onChange={handleChange}
         maxLength={200} />
         <br />
-
-      {formData.feedback.length}/200 Characters Remaining
-    </div>
+        <span style={{fontSize: 14}}>{formData.feedback.length}/200 Characters</span>
+  <br /><br />
 
         <button className = "submit-button" type="submit" 
         disabled={isFormIncomplete}>
@@ -76,15 +82,16 @@ return (
     
     </form>
 
-
+    <br />
 {/* PREVIEW BOX */}
 <div className="preview-container">
     <div className = "preview-box">
         <h3 style={{textAlign: "center"}}>Preview</h3>
         <p>Name: {formData.name}</p>
         <p>Email: {formData.email}</p>
-        <p>Feedback: {formData.feedback}</p>
+        <p>Feedback:{formData.feedback}</p>
     </div>
+</div>
 </div>     
 </>
 
